@@ -1,6 +1,23 @@
 server:
   port: ${PORT}
 
+ead:
+  serviceRegistry:
+    username: serviceregistryprod
+    password: '{cipher}a50cfc5eb05a2050b883171c01d49a43879abcd18d547cf069f05bb4def5980b'
+  auth:
+    jwtSecret: '{cipher}f1409f8743b9a16a9948c48646ac311de2c9beb789f1c657261937f03ef9f2c2ad0d2aa77e721f266fa7a23c1fe6ee589857a50bde84db8c9d7b6e4cd89c99f3765804cf9155a252283c3cdc704d44a6aa1af0d8e9c1d9fe5a91245c89616b78'
+    jwtExpirationMs: 14400000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: 'http://${ead.serviceRegistry.username}:${ead.serviceRegistry.password}@ead-serviceregistry-prod-davi.herokuapp.com/eureka'
+    instance:
+      hostname: ${APP_DOMAIN_NAME}
+      non-secure-port: 80
+      secure-port: 443
+
 spring:
   application:
     name: ead-api-gateway
