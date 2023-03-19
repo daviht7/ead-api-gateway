@@ -3,4 +3,3 @@ spring:
     active: prod
   application:
     name: ead-api-gateway
-
